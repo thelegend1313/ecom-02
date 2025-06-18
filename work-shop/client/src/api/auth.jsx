@@ -7,7 +7,7 @@ export const currentUser = async(token) => {
         }
     })
 }
-
+//test commit
     export const currentAdmin = async(token) => {
         return await axios.post('http://localhost:5001/api/current-admin',{},{
         headers:{
