@@ -19,6 +19,7 @@ const FormCategory = () => {
 
     const handleSubmit = async (e) => {
         // code
+        console.log('wdwd')
         e.preventDefault()
         if (!name) {
             return toast.warning('Please fill data')
@@ -32,6 +33,7 @@ const FormCategory = () => {
             console.log(err)
         }
     }
+    
     const handleRemove = async(id)=>{
         console.log(id)
         try{
