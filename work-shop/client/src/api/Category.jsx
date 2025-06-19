@@ -3,6 +3,7 @@ import axios from 'axios'
 
 export const createCategory = async (token, form) => {
     // code body
+   
     return axios.post('http://localhost:5001/api/category', form, {
         headers: {
             Authorization: `Bearer ${token}`
