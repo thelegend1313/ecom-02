@@ -37,6 +37,7 @@ const Uploadfile = ({ form, setForm }) => {
                     0,
                     (data) => {
                         // endpoint Backend
+                            
                         uploadFiles(token, data)
                             .then((res) => {
                                 console.log(res)
@@ -86,9 +87,9 @@ const Uploadfile = ({ form, setForm }) => {
         <div className='my-4'>
             <div className='flex mx-4 gap-4 my-4'>
                 {
-                    isLoading && <Loader className='w-16 h-16 animate-spin'/>
+                    isLoading && <Loader className='w-16 h-16 animate-spin' />
                 }
-                
+
                 {/* Image */}
                 {
                     form.images.map((item, index) =>

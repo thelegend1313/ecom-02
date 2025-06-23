@@ -4,9 +4,9 @@ const cloudinary = require('cloudinary').v2;
 
 // Configuration
 cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
+    cloud_name: 'doj4rxvvo',
+    api_key: '895989146872732',
+    api_secret: '-yivHOygD2eud8cmHObORcTRvJU',
 });
 
 
@@ -14,8 +14,9 @@ cloudinary.config({
 exports.create = async (req, res) => {
     try {
         // code
+        console.log(req.body)
         const { title, description, price, quantity, categoryId, images } = req.body
-        // console.log(title, description, price, quantity, images)
+       // console.log(title, description, price, quantity, images)
         const product = await prisma.product.create({
             data: {
                 title: title,
@@ -33,6 +34,7 @@ exports.create = async (req, res) => {
                 }
             }
         })
+    
         res.send(product)
     } catch (err) {
         console.log(err)
@@ -271,11 +273,12 @@ exports.searchFilters = async (req, res) => {
 exports.createImages = async (req, res) => {
     try {
         //code
-        // console.log(req.body)
+        //console.log(cloudinary)
         const result = await cloudinary.uploader.upload(req.body.image, {
             public_id: `Roitai-${Date.now()}`,
             resource_type: 'auto',
             folder: 'Ecom2024'
+            
         })
         res.send(result)
     } catch (err) {

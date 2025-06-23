@@ -14,6 +14,7 @@ import Dashboard from '../pages/admin/Dashboard'
 import Category from '../pages/admin/Category'
 import Product from '../pages/admin/Product'
 import Manage from '../pages/admin/Manage'
+import Member from '../pages/admin/Member'
 import LayoutUser from '../layouts/LayoutUser'
 import HomeUser from '../pages/user/HomeUser'
 import ProtectRouteUser from './ProtectRouteUser'
@@ -42,6 +43,7 @@ const router = createBrowserRouter([
             { path: 'Category', element: < Category /> },
             { path: 'Product', element: < Product /> },
             { path: 'Manage', element: < Manage /> },
+            { path: 'Member', element: < Member /> },
 
 
 

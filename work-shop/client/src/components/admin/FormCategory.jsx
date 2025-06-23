@@ -10,16 +10,15 @@ const FormCategory = () => {
     // Javascript
     const token = useEcomStore((state) => state.token)
     const [name, setName] = useState('')
-    // const [categories, setCategories] = useState([])
-    const categories = useEcomStore((state)=>state.categories)
-    const getCategory = useEcomStore((state)=>state.getCategory)
+    //const [categories, setCategories] = useState([])
+    const categories = useEcomStore((state) => state.categories)
+    const getCategory = useEcomStore((state) => state.getCategory)
     useEffect(() => {
         getCategory(token)
     }, [])
 
     const handleSubmit = async (e) => {
         // code
-        console.log('wdwd')
         e.preventDefault()
         if (!name) {
             return toast.warning('Please fill data')
@@ -33,15 +32,14 @@ const FormCategory = () => {
             console.log(err)
         }
     }
-    
-    const handleRemove = async(id)=>{
+    const handleRemove = async (id) => {
         console.log(id)
-        try{
-            const res = await removeCategory(token,id)
+        try {
+            const res = await removeCategory(token, id)
             console.log(res)
             toast.success(`Deleted ${res.data.name} success`)
             getCategory(token)
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
     }
@@ -68,13 +66,16 @@ const FormCategory = () => {
                         <li
                             className='flex justify-between my-2'
                             key={index}>
+                            {/* ถ้าไม่เพิ่ม key คือ index เเต่ละ tag li มีจะขึ้น error  */}
                             <span>
                                 {item.name}
                             </span>
-
+                            <span>
+                                {item.id}
+                            </span>
                             <button
-                            className='bg-red-500'
-                            onClick={()=>handleRemove(item.id)}
+                                className='bg-red-500'
+                                onClick={() => handleRemove(item.id)}
                             >Delete</button>
                         </li>
                     )

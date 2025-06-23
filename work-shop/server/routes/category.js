@@ -7,7 +7,8 @@ const { authCheck, adminCheck } = require('../middlewares/authCheck')
 //router.post('/category', authCheck, adminCheck, create)
 router.post('/category', authCheck, create)
 router.get('/category', list)
-router.delete('/category/:id', authCheck, adminCheck, remove)
+//router.delete('/category/:id', authCheck, adminCheck, remove)
+router.delete('/category/:id', authCheck, remove)
 
 
 

@@ -6,8 +6,8 @@ import { toast } from "react-toastify";
 import Uploadfile from "./Uploadfile";
 import { Link } from "react-router-dom";
 import { Pencil, Trash } from "lucide-react";
-import { numberFormat } from "../../utils/number";
-import { dateFormat } from "../../utils/dateformat";
+//import { numberFormat } from "../../utils/number";
+//import { dateFormat } from "../../utils/dateformat";
 
 const initialState = {
   title: "",
@@ -123,7 +123,7 @@ const FormProduct = () => {
             </option>
           ))}
         </select>
-        <hr />
+       <hr />
         {/* Upload file  */}
         <Uploadfile form={form} setForm={setForm} />
 
@@ -176,10 +176,10 @@ const FormProduct = () => {
 
                   <td>{item.title}</td>
                   <td>{item.description}</td>
-                  <td>{numberFormat(item.price)}</td>
+                  <td>{item.price}</td>
                   <td>{item.quantity}</td>
                   <td>{item.sold}</td>
-                  <td>{dateFormat(item.updatedAt)}</td>
+                  <td>{item.updatedAt}</td>
                   <td className="flex gap-2">
                     <p
                       className="bg-yellow-500 rounded-md p-1 

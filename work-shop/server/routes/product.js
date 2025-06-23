@@ -21,9 +21,11 @@ router.delete('/product/:id', remove)
 router.post('/productby', listby)
 router.post('/search/filters', searchFilters)
 
-router.post('/images', authCheck, adminCheck, createImages)
-router.post('/removeimages', authCheck, adminCheck, removeImage)
+// router.post('/images', authCheck, adminCheck, createImages)
+// router.post('/removeimages', authCheck, adminCheck, removeImage)
 
+router.post('/images', authCheck, createImages)
+router.post('/removeimages', authCheck, removeImage)
 
 
 

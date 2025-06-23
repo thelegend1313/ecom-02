@@ -13,7 +13,8 @@ const {
     getOrder
 } = require('../controllers/user')
 
-router.get('/users', authCheck, adminCheck, listUsers)
+//router.get('/users', authCheck, adminCheck, listUsers)
+router.get('/users', authCheck, listUsers)
 router.post('/change-status', authCheck, adminCheck, changeStatus)
 router.post('/change-role', authCheck, adminCheck, changeRole)
 

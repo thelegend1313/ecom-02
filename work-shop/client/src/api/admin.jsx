@@ -50,7 +50,6 @@ export const changeUserRole = async (token,value) => {
   return axios.post("http://localhost:5001/api/change-role",value, {
     headers: {
       Authorization: `Bearer ${token}`,
-      //testgit
     },
   });
 };
