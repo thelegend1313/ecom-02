@@ -1,10 +1,11 @@
 // rafce
 
 import React from 'react'
+import ListCart from './card/ListCart'
 
 const Cart = () => {
   return (
-    <div>Cart</div>
+    <div><ListCart/></div>
   )
 }
 

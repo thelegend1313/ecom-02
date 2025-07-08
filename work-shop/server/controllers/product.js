@@ -1,12 +1,14 @@
 const prisma = require("../config/prisma")
 const cloudinary = require('cloudinary').v2;
-
+const https = require('https')
+const agent = new https.Agent({ rejectUnauthorized: false })
 
 // Configuration
 cloudinary.config({
     cloud_name: 'doj4rxvvo',
     api_key: '895989146872732',
     api_secret: '-yivHOygD2eud8cmHObORcTRvJU',
+     secure: true, agent: agent,
 });
 
 

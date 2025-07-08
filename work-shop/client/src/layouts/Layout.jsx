@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <div>
     <MainNav />
-   <main>
+   <main className='hfull'>
     <Outlet/> 
    </main>
     

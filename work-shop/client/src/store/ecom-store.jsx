@@ -3,7 +3,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { listCategory } from "../api/Category";
 import { listProduct, searchFilters } from "../api/product";
-//import _ from "lodash";
+import _ from "lodash";
 
 const ecomStore = (set, get) => ({
   user: null,
@@ -23,9 +23,16 @@ const ecomStore = (set, get) => ({
   actionAddtoCart: (product) => {
     const carts = get().carts;
     const updateCart = [...carts, { ...product, count: 1 }];
-    // Step Uniqe
     const uniqe = _.unionWith(updateCart, _.isEqual);
-    set({ carts: uniqe });
+    //set({ carts: uniqe });
+    //console.log('Click add in carts', carts)
+    //console.log('Click add in uniqe', uniqe)
+    /*     
+        // Step Uniqe
+        
+        set({ carts: uniqe }); */
+   set({ carts: uniqe })
+
   },
   actionUpdateQuantity: (productId, newQuantity) => {
     // console.log('Update Clickkkkk', productId, newQuantity)
@@ -74,6 +81,7 @@ const ecomStore = (set, get) => ({
   },
   actionSearchFilters: async (arg) => {
     try {
+      console.log(arg)
       const res = await searchFilters(arg);
       set({ products: res.data });
     } catch (err) {

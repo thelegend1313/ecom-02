@@ -39,7 +39,8 @@ export const updateProduct = async (token, id, form) => {
   });
 };
 
-export const uploadFiles = async (token, form) => {
+export const 
+uploadFiles = async (token, form) => {
   // code
    console.log('form api frontent2', form)
  
@@ -85,3 +86,4 @@ export const listProductBy = async (sort, order, limit) => {
     limit,
   });
 };
+
