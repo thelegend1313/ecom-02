@@ -1,21 +1,30 @@
 import React from 'react'
 import { ListCheck, Trash2, CircleMinus, CirclePlus } from 'lucide-react'
 import useEcomStore from '../../store/ecom-store'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { createUserCart } from '../../api/user'
+import {toast} from 'react-toastify'
+import { constant } from 'lodash'
+
+
+
 const ListCart = () => {
-  const carts = useEcomStore((state) => state.carts);
+  const cart = useEcomStore((state) => state.carts);
   const getTotalprice = useEcomStore((state) => state.getTotalPrice);
   const user = useEcomStore((s) => s.user);
   const token = useEcomStore((state)=>state.token)
-
+  const navigate = useNavigate()
 
   const handleSaveCart = async()=>{
 
     await createUserCart(token,{cart})
     .then((res)=>{
       console.log(res)
-    })
+      toast.success('บันทึกเเล้วนะ',{
+          position0:"top-center",
+        });
+        navigate('/checkout')
+      })
     .catch((err)=>{
       console.log(err)
     })
@@ -28,7 +37,7 @@ const ListCart = () => {
       {/* Header*/}
       <div className='flex gap-4 mb-4'>
         <ListCheck size={36} />
-        <p className='text-2xl font-bold'>รายการสินค้า {carts.length}</p>
+        <p className='text-2xl font-bold'>รายการสินค้า {cart.length}</p>
 
       </div>
       {/*  LIst */}
@@ -36,7 +45,7 @@ const ListCart = () => {
         {/* Left */}
         <div className="col-span-2">
           {/* Card */}
-          {carts.map((item, index) => (
+          {cart.map((item, index) => (
             <div key={index} className="bg-white p-2 rounded-md shadow-md mb-2">
               {/* Row 1 */}
               <div className="flex justify-between mb-2">

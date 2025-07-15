@@ -18,7 +18,7 @@ router.get('/users', authCheck, listUsers)
 router.post('/change-status', authCheck, adminCheck, changeStatus)
 router.post('/change-role', authCheck, adminCheck, changeRole)
 
-router.post('/user/cart', authCheck, userCart)
+router.post('/user/cart', authCheck,userCart)
 router.get('/user/cart', authCheck, getUserCart)
 router.delete('/user/cart', authCheck, emptyCart)
 

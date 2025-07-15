@@ -1,9 +1,12 @@
 // rafce
 import React from 'react'
+import SummeryCard from './card/SummeryCard'
 
 const Checkout = () => {
   return (
-    <div>Checkout</div>
+    <div>
+    <SummeryCard/>
+    </div>
   )
 }
 

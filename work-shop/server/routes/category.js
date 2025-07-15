@@ -3,7 +3,7 @@ const router = express.Router()
 const { create, list, remove } = require('../controllers/category')
 const { authCheck, adminCheck } = require('../middlewares/authCheck')
 
-// @ENDPOINT http://localhost:5001/api/category
+// @ENDPOINT https://ecom2025-api-amber.vercel.app/api/category
 //router.post('/category', authCheck, adminCheck, create)
 router.post('/category', authCheck, create)
 router.get('/category', list)
