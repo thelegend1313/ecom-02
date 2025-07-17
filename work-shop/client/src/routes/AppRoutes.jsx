@@ -19,6 +19,7 @@ import LayoutUser from '../layouts/LayoutUser'
 import HomeUser from '../pages/user/HomeUser'
 import ProtectRouteUser from './ProtectRouteUser'
 import EditProduct from '../pages/admin/EditProduct'
+import Payment from '../pages/user/Payment'
 
 
 const router = createBrowserRouter([
@@ -53,13 +54,11 @@ const router = createBrowserRouter([
     },
     {
         path: '/user',
-        //element: <LayoutUser />,
-         element: <ProtectRouteUser element={<LayoutUser/>}/>,
+        element: <LayoutUser />,
+        // element: <ProtectRouteUser element={<LayoutUser/>}/>,
         children: [
             { index: true, element: <  HomeUser/> },
-            { path: 'Category', element: < Category /> },
-            { path: 'Product', element: < Product /> },
-
+            { path: 'Payment', element: < Payment /> },
 
         ]
     },
