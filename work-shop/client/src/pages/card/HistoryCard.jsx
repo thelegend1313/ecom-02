@@ -19,7 +19,7 @@ const HistoryCard = () => {
   const hdlGetOrders = (token) => {
     getOrders(token)
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         setOrders(res.data.orders);
       })
       .catch((err) => {
