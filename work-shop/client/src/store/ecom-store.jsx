@@ -56,7 +56,7 @@ const ecomStore = (set, get) => ({
     }, 0);
   },
   actionLogin: async (form) => {
-    const res = await axios.post("https://ecom2025-api-amber.vercel.app/api/login", form);
+    const res = await axios.post("http://localhost:5001/api/login", form);
     set({
       user: res.data.payload,
       token: res.data.token,

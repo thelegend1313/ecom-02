@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const createProduct = async (token, form) => {
   // code body
-  return axios.post("https://ecom2025-api-amber.vercel.app/api/product", form, {
+  return axios.post("http://localhost:5001/api/product", form, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -11,12 +11,12 @@ export const createProduct = async (token, form) => {
 
 export const listProduct = async (count = 20) => {
   // code body
-  return axios.get("https://ecom2025-api-amber.vercel.app/api/products/" + count);
+  return axios.get("http://localhost:5001/api/products/" + count);
 };
 
 export const readProduct = async (token, id) => {
   // code body
-  return axios.get("https://ecom2025-api-amber.vercel.app/api/product/" + id, {
+  return axios.get("http://localhost:5001/api/product/" + id, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -24,7 +24,7 @@ export const readProduct = async (token, id) => {
 };
 export const deleteProduct = async (token, id) => {
   // code body
-  return axios.delete("https://ecom2025-api-amber.vercel.app/api/product/" + id, {
+  return axios.delete("http://localhost:5001/api/product/" + id, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -32,7 +32,7 @@ export const deleteProduct = async (token, id) => {
 };
 export const updateProduct = async (token, id, form) => {
   // code body
-  return axios.put("https://ecom2025-api-amber.vercel.app/api/product/" + id, form, {
+  return axios.put("http://localhost:5001/api/product/" + id, form, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -45,7 +45,7 @@ uploadFiles = async (token, form) => {
    console.log('form api frontent2', form)
  
   return axios.post(
-    "https://ecom2025-api-amber.vercel.app/api/images",
+    "http://localhost:5001/api/images",
     {
       image: form,
     },
@@ -61,7 +61,7 @@ export const removeFiles = async (token, public_id) => {
   // code
   // console.log('form api frontent', form)
   return axios.post(
-    "https://ecom2025-api-amber.vercel.app/api/removeimages",
+    "http://localhost:5001/api/removeimages",
     {
       public_id,
     },
@@ -75,12 +75,12 @@ export const removeFiles = async (token, public_id) => {
 
 export const searchFilters = async (arg) => {
   // code body
-  return axios.post("https://ecom2025-api-amber.vercel.app/api/search/filters", arg);
+  return axios.post("http://localhost:5001/api/search/filters", arg);
 };
 
 export const listProductBy = async (sort, order, limit) => {
   // code body
-  return axios.post("https://ecom2025-api-amber.vercel.app/api/productby", {
+  return axios.post("http://localhost:5001/api/productby", {
     sort,
     order,
     limit,
