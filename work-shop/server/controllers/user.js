@@ -60,11 +60,11 @@ exports.userCart = async (req, res) => {
     const user = await prisma.user.findFirst({
       where: { id: Number(req.user.id) },
     });
-    // console.log(user)
+    //console.log("user",user)
 
     // Check quantity
     for (const item of cart) {
-      // console.log(item)
+      console.log(item)
       const product = await prisma.product.findUnique({
         where: { id: item.id },
         select: { quantity: true, title: true },
@@ -198,13 +198,13 @@ exports.saveOrder = async (req, res) => {
   try {
     //code
     // Step 0 Check Stripe
-    console.log(req.body)
-    return res.send('hello Jukkru!!!')
+    //console.log(req.body)
+    //return res.send('hello Jfkkru!!!')
     // stripePaymentId String
     // amount          Int
     // status          String
     // currentcy       String
-    const { id, amount, status, currency } = req.body.paymentIntent;
+    const { id, amount, status, currency } = req.body.paymentIntent;  //make restructuring
 
     // Step 1 Get User Cart
     const userCart = await prisma.cart.findFirst({
