@@ -198,8 +198,8 @@ exports.saveOrder = async (req, res) => {
   try {
     //code
     // Step 0 Check Stripe
-    // console.log(req.body)
-    // return res.send('hello Jukkru!!!')
+    console.log(req.body)
+    return res.send('hello Jukkru!!!')
     // stripePaymentId String
     // amount          Int
     // status          String

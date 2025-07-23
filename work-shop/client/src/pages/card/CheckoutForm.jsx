@@ -5,6 +5,10 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
+import "../../stripe.css"
+import { saveOrder } from "../../api/user";
+import useEcomStore from "../../store/ecom-store";
+
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -12,8 +16,8 @@ export default function CheckoutForm() {
 
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
-  const handleSubmit = async (e) => {
+   const token = useEcomStore((state) => state.token);
+ const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!stripe || !elements) {
@@ -41,7 +45,13 @@ console.log(payload)
     if (payload.error) {
       setMessage(error.message);
     } else {
-      console.log("Jukku",payload);
+      saveOrder(token,payload)
+      .then((res)=> {
+        console.log(res);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
     }
 
     setIsLoading(false);
