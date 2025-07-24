@@ -113,7 +113,7 @@ npm install react-hook-form zod @hookform/resolvers zxcvbn
         directUrl = env("DIRECT_URL")
         }
 
-npx prisma db push
+
 ----When update ----
 - DATABASE_URL : "?pgbouncer=true&connection_limit=1"
 npx prisma db push
