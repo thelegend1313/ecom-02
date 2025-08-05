@@ -3,13 +3,21 @@
 import React from 'react'
 import { BookText, ShoppingCart } from 'lucide-react'
 import useEcomStore from '../../store/ecom-store'
-
+import { motion } from "motion/react"
 
 
 function ProductCard({ item }) {
     const actionAddtoCart = useEcomStore((state)=>state.actionAddtoCart)
    // console.log(item.title)
     return (
+   <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+                duration: 0.4,
+                scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+            }}
+        >
         <div className='border rounded-md p-2 shadow-md p-2 w-36'>
             <div>
                 <div className='w-full h-24 bg-gray-200 rounded-md text-center flex items-center justify-center shadow'>
@@ -56,6 +64,7 @@ function ProductCard({ item }) {
 
 
         </div>
+        </motion.div>
     )
 }
 

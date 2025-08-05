@@ -5,7 +5,7 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
-import "../../stripe.css"
+//import "../../stripe.css"
 import { saveOrder } from "../../api/user";
 import useEcomStore from "../../store/ecom-store";
 

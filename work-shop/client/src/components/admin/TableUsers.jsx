@@ -86,7 +86,7 @@ const TableUsers = () => {
               <td>{el.enabled ? "Active" : "Inactive"}</td>
               <td>
                 <button
-                  className="bg-yellow-500 text-white 
+                  className="bg-blue-800 text-white 
                   p-1 rounded-md shadow-md"
                   onClick={() => handleChangeUserStatus(el.id, el.enabled)}
                 >
