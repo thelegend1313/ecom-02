@@ -15,10 +15,26 @@ const initialState = {
   price: 0,
   quantity: 0,
   categoryId: "",
+  colorId: "",
+  branchId: "",
+  promoId: "",
   images: [],
+  status: "",
+  hot_point: 0,
+  code: "",
+  code_group: "",
+  factory_code: "",
+  factory_code_group: "",
+  bar_code: "", bar_code_group: ""
 };
 const FormProduct = () => {
   const token = useEcomStore((state) => state.token);
+  const getBranch = useEcomStore((state) => state.getBranch);
+  const branch = useEcomStore((state) => state.branch);
+  const getPromo = useEcomStore((state) => state.getPromo);
+  const promo = useEcomStore((state) => state.promo);
+  const getColor = useEcomStore((state) => state.getColor);
+  const color = useEcomStore((state) => state.color);
   const getCategory = useEcomStore((state) => state.getCategory);
   const categories = useEcomStore((state) => state.categories);
   const getProduct = useEcomStore((state) => state.getProduct);
@@ -31,13 +47,26 @@ const FormProduct = () => {
     price: 0,
     quantity: 0,
     categoryId: "",
+    colorId: "",
+    branchId: "",
+    promoId: "",
     images: [],
+    status: "",
+    hot_point: 0,
+    code: "",
+    code_group: "",
+    factory_code: "",
+    factory_code_group: "",
+    bar_code: "", bar_code_group: ""
   });
 
   useEffect(() => {
     // code
     getCategory();
+    getColor();
     getProduct(100);
+    getBranch();
+    getPromo();
   }, []);
 
   const handleOnChange = (e) => {
@@ -52,6 +81,7 @@ const FormProduct = () => {
     try {
       const res = await createProduct(token, form);
       console.log(res);
+       console.log("ggggggggggggggggggggggggggggg");
       setForm(initialState);
       getProduct();
       toast.success(`เพิ่มข้อมูล ${res.data.title} สำเร็จ`);
@@ -75,65 +105,195 @@ const FormProduct = () => {
 
   return (
     <div className="container mx-auto p-4 bg-white shadow-md">
+      <h1>เพิ่มข้อมูลสินค้า</h1>
       <form onSubmit={handleSubmit}>
-        <h1>เพิ่มข้อมูลสินค้า</h1>
-        <input
-          className="border"
-          value={form.title}
-          onChange={handleOnChange}
-          placeholder="Title"
-          name="title"
-        />
-        <input
-          className="border"
-          value={form.description}
-          onChange={handleOnChange}
-          placeholder="Description"
-          name="description"
-        />
-        <input
-          type="number"
-          className="border"
-          value={form.price}
-          onChange={handleOnChange}
-          placeholder="price"
-          name="price"
-        />
-        <input
-          type="number"
-          className="border"
-          value={form.quantity}
-          onChange={handleOnChange}
-          placeholder="quantity"
-          name="quantity"
-        />
-        <select
-          className="border"
-          name="categoryId"
-          onChange={handleOnChange}
-          required
-          value={form.categoryId}
-        >
-          <option value="" disabled>
-            Please Select
-          </option>
-          {categories.map((item, index) => (
-            <option key={index} value={item.id}>
-              {item.name}
-            </option>
-          ))}
-        </select>
-       <hr />
+        <div class="form-group row">
+          <div class="col-sm-3 mb-3 mb-sm-0">
+            <input type="text"
+              class="form-control form-control-user"
+              value={form.title}
+              onChange={handleOnChange}
+              placeholder="Title"
+              name="title" />
+          </div>
+          <div class="col-sm-3 mb-3 mb-sm-0">
+            <input type="text"
+              class="form-control form-control-user"
+              value={form.description}
+              onChange={handleOnChange}
+              placeholder="description"
+              name="description" />
+          </div>
+          <div class="col-sm-3 mb-3 mb-sm-0">
+            <input type="number"
+              class="form-control form-control-user"
+              value={form.price}
+              onChange={handleOnChange}
+              placeholder="price"
+              name="price" />
+          </div>
+        </div>
+        <hr />
+        <div class="form-group row">
+          <div class="col-sm-3 mb-3 mb-sm-0">
+            <input type="text"
+              class="form-control form-control-user"
+              value={form.quantity}
+              onChange={handleOnChange}
+              placeholder="quantity"
+              name="quantity" />
+          </div>
+          <div class="col-sm-3 mb-3 mb-sm-0">
+            <select
+              className="border"
+              name="categoryId"
+              onChange={handleOnChange}
+              required
+              value={form.categoryId}
+            >
+              <option value="" disabled>
+                Please Select
+              </option>
+              {categories.map((item, index) => (
+                <option key={index} value={item.id}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
+            <select
+              className="border"
+              name="colorId"
+              onChange={handleOnChange}
+              required
+              value={form.colorId}
+            >
+              <option value="" disabled>
+                Please Select
+              </option>
+              {color.map((item, index) => (
+                <option key={index} value={item.id}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div class="col-sm-3 mb-3 mb-sm-0">
+            <select
+              className="border"
+              name="branchId"
+              onChange={handleOnChange}
+              required
+              value={form.branchId}
+            >
+              <option value="" disabled>
+                Please Select
+              </option>
+              {branch.map((item, index) => (
+                <option key={index} value={item.id}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
+            <select
+              className="border"
+              name="promoId"
+              onChange={handleOnChange}
+              required
+              value={form.promoId}
+            >
+              <option value="" disabled>
+                Please Select
+              </option>
+              {promo.map((item, index) => (
+                <option key={index} value={item.id}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <hr />
+         <div class="form-group row">
+          <div class="col-sm-3 mb-3 mb-sm-0">
+            <input type="text"
+              class="form-control form-control-user"
+              value={form.status}
+              onChange={handleOnChange}
+              placeholder="status"
+              name="status" />
+          </div>
+          <div class="col-sm-3 mb-3 mb-sm-0">
+            <input type="text"
+              class="form-control form-control-user"
+              value={form.hot_point}
+              onChange={handleOnChange}
+              placeholder="hot_point"
+              name="hot_point" />
+          </div>
+          <div class="col-sm-3 mb-3 mb-sm-0">
+            <input type="number"
+              class="form-control form-control-user"
+              value={form.code}
+              onChange={handleOnChange}
+              placeholder="code"
+              name="code" />
+          </div>
+        </div>
+         <hr />
+        <div class="form-group row">
+          <div class="col-sm-3 mb-3 mb-sm-0">
+            <input type="text"
+              class="form-control form-control-user"
+              value={form.code_group}
+              onChange={handleOnChange}
+              placeholder="code_group"
+              name="code_group" />
+          </div>
+          <div class="col-sm-3 mb-3 mb-sm-0">
+            <input type="text"
+              class="form-control form-control-user"
+              value={form.factory_code}
+              onChange={handleOnChange}
+              placeholder="factory_code"
+              name="factory_code" />
+          </div>
+          <div class="col-sm-3 mb-3 mb-sm-0">
+            <input type="number"
+              class="form-control form-control-user"
+              value={form.factory_code_group}
+              onChange={handleOnChange}
+              placeholder="factory_code_group"
+              name="factory_code_group" />
+          </div>
+        </div>
+         <hr />
+        <div class="form-group row">
+          <div class="col-sm-3 mb-3 mb-sm-0">
+            <input type="text"
+              class="form-control form-control-user"
+              value={form.bar_code}
+              onChange={handleOnChange}
+              placeholder="bar_code"
+              name="bar_code" />
+          </div>
+          <div class="col-sm-3 mb-3 mb-sm-0">
+            <input type="text"
+              class="form-control form-control-user"
+              value={form.bar_code_group}
+              onChange={handleOnChange}
+              placeholder="bar_code_group"
+              name="bar_code_group" />
+          </div>
+        
+        </div>
+      </form>
+      <form onSubmit={handleSubmit}>
+
+
         {/* Upload file  */}
         <Uploadfile form={form} setForm={setForm} />
 
-        <button
-          className="bg-blue-500 p-2 rounded-md shadow-md 
-                hover:scale-105 hover:-translate-y-1 hover:duration-200
-                "
-        >
-          เพิ่มสินค้า
-        </button>
+        <button type="submit" class="btn btn-success">Add Product</button>
 
         <hr />
         <br />

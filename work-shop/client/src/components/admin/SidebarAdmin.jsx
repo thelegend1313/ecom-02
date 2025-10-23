@@ -69,9 +69,9 @@ const SidebarAdmin = () => {
           <ShoppingBasket className="mr-2" />
           Product
         </NavLink>
-{/* ทดลอง เริ่ม */}
+        {/* ทดลอง เริ่ม */}
         <NavLink
-          to={"member"}
+          to={"Role"}
           className={({ isActive }) =>
             isActive
               ? "bg-gray-900 rounded-md text-white px-4 py-2 flex items-center"
@@ -79,10 +79,31 @@ const SidebarAdmin = () => {
           }
         >
           <ShoppingBasket className="mr-2" />
-          Member
+          Role
         </NavLink>
-
-{/* ทดลอง จบ */}
+        <NavLink
+          to={"Color"}
+          className={({ isActive }) =>
+            isActive
+              ? "bg-gray-900 rounded-md text-white px-4 py-2 flex items-center"
+              : "text-gray-300 px-4 py-2 hover:bg-gray-700 hover:text-white rounded flex items-center"
+          }
+        >
+          <ShoppingBasket className="mr-2" />
+          Color
+        </NavLink>
+        <NavLink
+          to={"Branch"}
+          className={({ isActive }) =>
+            isActive
+              ? "bg-gray-900 rounded-md text-white px-4 py-2 flex items-center"
+              : "text-gray-300 px-4 py-2 hover:bg-gray-700 hover:text-white rounded flex items-center"
+          }
+        >
+          <ShoppingBasket className="mr-2" />
+          Branch
+        </NavLink>
+        {/* ทดลอง จบ */}
         <NavLink
           to={"orders"}
           className={({ isActive }) =>
@@ -93,6 +114,28 @@ const SidebarAdmin = () => {
         >
           <ListOrdered className="mr-2" />
           Orders
+        </NavLink>
+         <NavLink
+          to={"Quotation"}
+          className={({ isActive }) =>
+            isActive
+              ? "bg-gray-900 rounded-md text-white px-4 py-2 flex items-center"
+              : "text-gray-300 px-4 py-2 hover:bg-gray-700 hover:text-white rounded flex items-center"
+          }
+        >
+          <ListOrdered className="mr-2" />
+           Quotation
+        </NavLink>
+         <NavLink
+          to={"LoggerMan"}
+          className={({ isActive }) =>
+            isActive
+              ? "bg-gray-900 rounded-md text-white px-4 py-2 flex items-center"
+              : "text-gray-300 px-4 py-2 hover:bg-gray-700 hover:text-white rounded flex items-center"
+          }
+        >
+          <ListOrdered className="mr-2" />
+         LoggerMan
         </NavLink>
       </nav>
 

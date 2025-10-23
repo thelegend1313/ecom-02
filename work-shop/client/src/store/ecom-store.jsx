@@ -2,6 +2,10 @@ import axios from "axios";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { listCategory } from "../api/Category";
+import { listColor } from "../api/color";
+import { listBranch } from "../api/branch";
+import { listPromo } from "../api/promo";
+import { listRole } from "../api/role";
 import { listProduct, searchFilters } from "../api/product";
 import _ from "lodash";
 
@@ -9,6 +13,10 @@ const ecomStore = (set, get) => ({
   user: null,
   token: null,
   categories: [],
+  color: [],
+  branch: [],
+  promo: [],
+  role:[],
   products: [],
   carts: [],
   logout: () => {
@@ -16,8 +24,12 @@ const ecomStore = (set, get) => ({
       user: null,
       token: null,
       categories: [],
+       color: [],
+         branch: [],
+    promo: [],
       products: [],
       carts: [],
+      role: [],
     });
   },
   actionAddtoCart: (product) => {
@@ -67,6 +79,38 @@ const ecomStore = (set, get) => ({
     try {
       const res = await listCategory();
       set({ categories: res.data });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+    getColor: async () => {
+    try {
+      const res = await listColor();
+      set({ color: res.data });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getBranch: async () => {
+    try {
+      const res = await listBranch();
+      set({ branch: res.data });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getPromo: async () => {
+    try {
+      const res = await listPromo();
+      set({ promo: res.data });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getRole: async () => {
+    try {
+      const res = await listRole();
+      set({ role: res.data });
     } catch (err) {
       console.log(err);
     }

@@ -3,7 +3,7 @@ import { ListCheck, Trash2, CircleMinus, CirclePlus } from 'lucide-react'
 import useEcomStore from '../../store/ecom-store'
 import { Link, useNavigate } from 'react-router-dom'
 import { createUserCart } from '../../api/user'
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 import { constant } from 'lodash'
 
 
@@ -12,25 +12,38 @@ const ListCart = () => {
   const cart = useEcomStore((state) => state.carts);
   const getTotalprice = useEcomStore((state) => state.getTotalPrice);
   const user = useEcomStore((s) => s.user);
-  const token = useEcomStore((state)=>state.token)
+  const token = useEcomStore((state) => state.token)
   const navigate = useNavigate()
 
-  const handleSaveCart = async()=>{
+  const handleSaveCart = async () => {
 
-    await createUserCart(token,{cart})
-    .then((res)=>{
-      console.log(res)
-      toast.success('บันทึกเเล้วนะ',{
-          position0:"top-center",
+    await createUserCart(token, { cart })
+      .then((res) => {
+        console.log(res)
+        toast.success('บันทึกเเล้วนะ', {
+          position0: "top-center",
         });
         navigate('/checkout')
       })
-    .catch((err)=>{
-      console.log("err",err)
-      toast.warning(err.response.data.message)
-    })
-   }
+      .catch((err) => {
+        console.log("err", err)
+        toast.warning(err.response.data.message)
+      })
+  }
 
+  const handleGenQuatation = async () => {
+
+
+    console.log(res)
+    toast.success('ได้รีพอตละนะ', {
+      position0: "top-center",
+    });
+    navigate('/MQuatation')
+      .catch((err) => {
+        console.log("err", err)
+        toast.warning(err.response.data.message)
+      })
+  }
 
 
   return (
@@ -108,8 +121,9 @@ const ListCart = () => {
             }
 
 
-
-
+            <Link to={'/MQuatation'}><button onClick={handleGenQuatation} className='bg-red-500 w-full
+              rounded-md text-white py-2 shadow-md hover:bg-red-700
+              '>gen pdf</button></Link>
 
 
             <Link to={'/shop'}>

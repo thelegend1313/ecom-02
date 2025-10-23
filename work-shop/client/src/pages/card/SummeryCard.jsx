@@ -23,9 +23,11 @@ const SummaryCard = () => {
   const hdlGetUserCart = (token) => {
     listUserCart(token)
       .then((res) => {
-        // console.log(res)
+        console.log('res.data.products'+res.data.products)
         setProducts(res.data.products);
         setCartTotal(res.data.cartTotal);
+       
+        
       })
       .catch((err) => {
         console.log(err);

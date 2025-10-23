@@ -1,4 +1,5 @@
 const prisma = require('../config/prisma')
+const logger = require('../config/logger')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
@@ -6,8 +7,13 @@ const jwt = require('jsonwebtoken')
 exports.register = async (req, res) => {
     try {
         //code
-        const { email, password } = req.body
 
+        const {
+            email, password, birthday, birthmonth,
+            birthyear, age, sex,
+            address, country, zipcode, roleId
+        } = req.body
+        console.log("roleId", req.body)
         // Step 1 Validate body
         if (!email) {
             return res.status(400).json({ message: 'Email is required!!!' })
@@ -27,12 +33,24 @@ exports.register = async (req, res) => {
         }
         // Step 3 HashPassword
         const hashPassword = await bcrypt.hash(password, 10)
+        console.log("testrole")
+
 
         // Step 4 Register
         await prisma.user.create({
             data: {
                 email: email,
-                password: hashPassword
+                password: hashPassword,
+                birthday: Number(birthday),
+                birthyear: Number(birthyear),
+                birthmonth: Number(birthmonth),
+                age: Number(age),
+                sex: sex,
+                address: address,
+                country: country,
+                zipcode: zipcode,
+                roleId: parseInt(roleId)
+
             }
         })
 
@@ -48,11 +66,20 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
     try {
         //code
+
+        logger.info('INFO message');
+        logger.debug('DEBUG message');
+        logger.error('ERROR message');
         const { email, password } = req.body
         // Step 1 Check Email
         const user = await prisma.user.findFirst({
             where: {
                 email: email
+            }
+        })
+        const role = await prisma.role.findFirst({
+            where: {
+                id: user.roleId
             }
         })
         if (!user || !user.enabled) {
@@ -67,7 +94,7 @@ exports.login = async (req, res) => {
         const payload = {
             id: user.id,
             email: user.email,
-            role: user.role
+            role: role.name
         }
         // Step 4 Generate Token
         jwt.sign(payload, process.env.SECRET, { expiresIn: '1d' }, (err, token) => {

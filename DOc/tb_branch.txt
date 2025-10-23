@@ -1,0 +1,16 @@
+
+
+
+
+model Branch {
+  id          Int       @id @default(autoincrement())
+  name        String
+  namet       String
+  code	      String
+  br_address  String
+  status	  boolean
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+

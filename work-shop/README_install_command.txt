@@ -36,6 +36,7 @@ npm i react-router-dom
 npm i axios
 npm i zustand axios
 
+
 npm i react-image-file-resizer
 npm i react-toastify
 npm i react-icons
@@ -44,4 +45,5 @@ npm i lodash
 npm i rc-slider
 npm i numeral
 npm install moment
---------------------------
+npm install swiper
+--------------------------  

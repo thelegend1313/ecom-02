@@ -39,6 +39,11 @@ export const saveOrder = async (token, payload) => {
     },
   });
 };
+export const importUser = async (form) => {
+    // code body
+     console.log("frommmmm",form)
+    return axios.post('http://localhost:5001/api/user/import-excel',form)
+}
 
 export const getOrders = async (token) => {
   // code body

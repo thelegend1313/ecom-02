@@ -1,4 +1,6 @@
 const prisma = require("../config/prisma");
+const xlsx = require('xlsx');//*
+const fs = require('fs')
 
 exports.listUsers = async (req, res) => {
   try {
@@ -7,7 +9,7 @@ exports.listUsers = async (req, res) => {
       select: {
         id: true,
         email: true,
-        role: true,
+        roleId: true,
         enabled: true,
         address: true,
       },
@@ -21,6 +23,7 @@ exports.listUsers = async (req, res) => {
 exports.changeStatus = async (req, res) => {
   try {
     //code
+    console.log('testpath');
     const { id, enabled } = req.body;
     console.log(id, enabled);
     const user = await prisma.user.update({
@@ -289,3 +292,59 @@ exports.getOrder = async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 };
+exports.importt = async (req, res) => {
+  try {
+    /*    if (!req.files || Object.keys(req.files).length === 0) {
+           return res.status(400).send('No files were uploaded.');
+       } */
+    //console.log(req.files)
+    const excel = req.files['files[]']
+
+    console.log(excel)
+    //console.log("excel.files.mimetype"+excel.files.mimetype)
+    if (excel.mimetype !== 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+      return res.status(400).json({ message: "Invalid file format" })
+      fs.unlinkSync(excel.tempFilePath)
+    }
+    const workbook = xlsx.readFile(excel.tempFilePath)
+    const sheetName = workbook.SheetNames[0]
+    const data = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName])
+
+    const successData = []
+    const failureData = []
+
+
+    for (let i = 0; i < data.length; i++) {
+      console.log(data[i])
+      const {  email, password,birthday,birthmonth,
+            birthyear,age,sex,
+            address,country,zipcode,roleId } = data[i]
+      /* if(!name){
+          failureData.push({ row : i , message : "Name is required" })
+          continue
+      } */
+      
+      const user = await prisma.user.create({
+        data: {
+          email: email,
+          password: password,
+          birthday: Number(birthday),
+          birthyear: Number(birthyear),
+          birthmonth: Number(birthmonth),
+          age: Number(age),
+          sex: sex,
+          address: address,
+          country: country,
+          zipcode: String(zipcode),
+          roleId: parseInt(roleId)
+
+        }
+      })
+
+    }
+    res.send('Imported Success')
+    //console.log(excel)
+  } catch (err) {
+    console.log(err)
+  }
+}

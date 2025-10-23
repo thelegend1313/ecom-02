@@ -17,7 +17,9 @@ exports.create = async (req, res) => {
     try {
         // code
         console.log(req.body)
-        const { title, description, price, quantity, categoryId, images } = req.body
+        const { title, description, price, quantity, categoryId,
+             images,colorId,promoId,branchId,status,hot_point,code,
+             code_group,factory_code,factory_code_group,bar_code,bar_code_group } = req.body
        // console.log(title, description, price, quantity, images)
         const product = await prisma.product.create({
             data: {
@@ -26,6 +28,17 @@ exports.create = async (req, res) => {
                 price: parseFloat(price),
                 quantity: parseInt(quantity),
                 categoryId: parseInt(categoryId),
+                colorId:parseInt(colorId),
+                promoId:parseInt(promoId),
+                branchId:parseInt(branchId),
+                 status:status,
+                 hot_point:parseInt(hot_point),
+                 code:code,
+                 code_group:code_group,
+                 factory_code:String(factory_code),
+                 factory_code_group:String(factory_code_group),
+                 bar_code:String(bar_code),
+                 bar_code_group:String(bar_code_group),
                 images: {
                     create: images.map((item) => ({
                         asset_id: item.asset_id,

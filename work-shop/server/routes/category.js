@@ -1,8 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const { create, list, remove } = require('../controllers/category')
+const fileUpload = require('express-fileupload');//*
+const uploadOpts={
+    useTempFiles:true,
+    tempFileDir:'/tmp/'
+}
+const { create, list, remove,importt } = require('../controllers/category')
 const { authCheck, adminCheck } = require('../middlewares/authCheck')
-
+router.post('/category/import-excel',fileUpload(uploadOpts),importt)//*
 // @ENDPOINT http://localhost:5001/api/category
 //router.post('/category', authCheck, adminCheck, create)
 router.post('/category', authCheck, create)

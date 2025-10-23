@@ -1,0 +1,19 @@
+
+
+
+
+model Color {
+  id          Int       @id @default(autoincrement())
+  name        String
+  namet       String
+  code	      String
+  status	  boolean
+  des         String
+  image       String
+  short_code  String
+  type        String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+

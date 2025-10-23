@@ -17,6 +17,7 @@ exports.authCheck = async (req, res, next) => {
                 email: req.user.email
             }
         })
+        // console.log(user.enabled)
         if (!user.enabled) {
             return res.status(400).json({ message: 'This account cannot access' })
         }
@@ -31,11 +32,24 @@ exports.authCheck = async (req, res, next) => {
 
 exports.adminCheck = async (req, res, next) => {
     try {
-        const { email } = req.user
+ /*        const { email } = req.user
         const adminUser = await prisma.user.findFirst({
             where: { email: email }
         })
-        if (!adminUser || adminUser.role !== 'admin') {
+ */
+        const { email } = req.user
+        const adminUser = await prisma.user.findFirst({
+            where: {
+                email: email
+            }
+        })
+        const role = await prisma.role.findFirst({
+            where: {
+                id: adminUser.roleId
+            }
+        })
+        console.log('tresttttt')
+        if (!adminUser || role.name !== 'admin') {
             return res.status(403).json({ message: 'Acess Denied: Admin Only' })
         }
         // console.log('admin check', adminUser)

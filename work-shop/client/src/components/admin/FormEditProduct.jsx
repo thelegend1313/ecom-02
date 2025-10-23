@@ -17,6 +17,7 @@ const initialState = {
     price: 200,
     quantity: 20,
     categoryId: '',
+    colorId: '',
     images: []
 }
 const FormEditProduct = () => {
@@ -24,6 +25,8 @@ const FormEditProduct = () => {
     const navigate = useNavigate()
 
     const token = useEcomStore((state) => state.token)
+    const getColor = useEcomStore((state) => state.getColor)
+    const color = useEcomStore((state) => state.color)
     const getCategory = useEcomStore((state) => state.getCategory)
     const categories = useEcomStore((state) => state.categories)
 
@@ -31,7 +34,8 @@ const FormEditProduct = () => {
 
     useEffect(() => {
         // code
-        getCategory()
+         getCategory()
+         getColor()
         fetchProduct(token, id, form)
     }, [])
 
@@ -110,6 +114,20 @@ const FormEditProduct = () => {
                     <option value="" disabled>Please Select</option>
                     {
                         categories.map((item, index) =>
+                            <option key={index} value={item.id}>{item.name}</option>
+                        )
+                    }
+                </select>
+                <select
+                    className='border'
+                    name='colorId'
+                    onChange={handleOnChange}
+                    required
+                    value={form.colorId}
+                >
+                    <option value="" disabled>Please Select</option>
+                    {
+                        color.map((item, index) =>
                             <option key={index} value={item.id}>{item.name}</option>
                         )
                     }

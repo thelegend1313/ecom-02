@@ -40,6 +40,7 @@ const Login = () => {
   const roleRedirect = (role) => {
     if (role === "admin") {
       navigate("/admin");
+       toast.success("Welcome Back2");
     } else {
       navigate(-1);
     }

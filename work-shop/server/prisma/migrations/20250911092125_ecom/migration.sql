@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE `user` ADD COLUMN `ip` VARCHAR(191) NULL,
+    ADD COLUMN `message` VARCHAR(191) NULL,
+    ADD COLUMN `news` VARCHAR(191) NULL;

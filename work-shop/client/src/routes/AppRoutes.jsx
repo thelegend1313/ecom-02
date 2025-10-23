@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from '../pages/home'
 import Shop from '../pages/Shop'
 import Cart from '../pages/Cart'
+import MQuatation from '../pages/MQuatation'
 import History from '../pages/user/History'
 import Checkout from '../pages/Checkout'
 import Login from '../pages/auth/Login'
@@ -12,9 +13,13 @@ import Layout from '../layouts/Layout'
 import Layoutadmin from '../layouts/LayoutAdmin'
 import Dashboard from '../pages/admin/Dashboard'
 import Category from '../pages/admin/Category'
+import Role from '../pages/admin/Role'
+import Color from '../pages/admin/Color'
+import Branch from '../pages/admin/Branch'
 import Product from '../pages/admin/Product'
 import Manage from '../pages/admin/Manage'
-import Member from '../pages/admin/Member'
+import Quotation from '../pages/admin/Quotation'
+import LoggerMan from '../pages/admin/LoggerMan'
 import LayoutUser from '../layouts/LayoutUser'
 import HomeUser from '../pages/user/HomeUser'
 import ProtectRouteUser from './ProtectRouteUser'
@@ -33,6 +38,7 @@ const router = createBrowserRouter([
             { path: 'cart', element: < Cart /> },
             { path: 'history', element: < History /> },
             { path: 'checkout', element: < Checkout /> },
+            { path: 'MQuatation', element: < MQuatation /> },
             { path: 'login', element: < Login /> },
             { path: 'register', element: < Register /> },
 
@@ -47,8 +53,12 @@ const router = createBrowserRouter([
             { path: 'Product', element: < Product /> },
             { path: 'Product/:id', element: < EditProduct /> },
             { path: 'Manage', element: < Manage /> },
-            { path: 'Member', element: < Member /> },
+            { path: 'Role', element: < Role /> },
+            { path: 'Color', element: < Color /> },
+            { path: 'Branch', element: < Branch /> },
             { path: 'orders', element: < ManageOrders /> },
+            { path: 'Quotation', element: < Quotation /> },
+            { path: 'LoggerMan', element: < LoggerMan /> },
 
 
 
